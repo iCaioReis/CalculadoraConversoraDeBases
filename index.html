@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora conversora de bases</title>
+</head>
+
+<body>
+    <section id="main">
+        <h1>Digite um número até 10 dígitos</h1>
+        <input type="text" id="input" maxlength="10" onkeypress="return apenasNumeros();" onchange="converter()">
+        <button id="converter"><h2>Converter</h2></button>
+        <p>Binário</p>
+        <h3 id="binario">0</h3>
+        <p>Hexadecimal</p>
+        <h3 id="hexa">0</h3>
+        <p>Octal</p>
+        <h3 id="octal">0</h3>
+    </section>
+</body>
+<style>
+    * {
+        border: 0;
+        padding: 0;
+        margin: 0;
+    }
+
+    body {
+        background-color: aqua;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #main {
+        background-color: white;
+        margin-top: 100px;
+        padding-top: 50px;
+        padding-bottom: 50px;
+        width: 500px;
+        border-radius: 10px;
+        box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.2);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #converter{
+        background-color: blue;
+        border-radius: 10px;
+        height: 50px;
+        width: 400px;
+        box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.2);
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    #input {
+        margin-top: 20px;
+        border: 1px solid black;
+        width: 400px;
+        height: 50px;
+        border-radius: 10px;
+        text-align: center;
+        font-size: 30px;
+
+    }
+    h1{
+        font-size: 30px;
+    }
+    h2{
+        font-size: 30px;
+        font-weight: bold;
+        color: white;
+    }
+
+    p{
+        padding-top: 20px;
+        font-size: 25px;
+        font-weight: bold;
+    }
+</style>
+
+<script>
+    function converter(params) {
+        var numero = parseInt(document.getElementById("input").value)
+        var binario = numero.toString(2)
+        var hexa = numero.toString(16)
+        var octal = numero.toString(8)
+        document.getElementById("binario").innerText = binario
+        document.getElementById("hexa").innerText = hexa
+        document.getElementById("octal").innerText = octal
+    }
+    function apenasNumeros(evt) {
+        var theEvent = evt || window.event;
+        var key = theEvent.keyCode || theEvent.which;
+        key = String.fromCharCode(key);
+        //var regex = /^[0-9.,]+$/;
+        var regex = /^[0-9.]+$/;
+        if (!regex.test(key)) {
+            theEvent.returnValue = false;
+            if (theEvent.preventDefault) theEvent.preventDefault();
+        }
+    }
+</script>
+
+</html>
